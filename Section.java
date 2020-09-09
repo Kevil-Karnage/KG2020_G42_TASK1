@@ -22,8 +22,8 @@ public class Section {
         gr.setColor(Color.black);
         gr.drawRect(x,y,widthSection, heightSection);
 
-        if (option % 2 == 1) {
-            Window window = new Window(x, y, (int) (4 * Math.random()));
+        if (option != 6) {
+            Window window = new Window(x, y, option);
             window.setX(x + (widthSection - window.getWidth()) / 2);
             window.setY(y + (heightSection - window.getHeight()) / 2 - 10);
             window.draw(gr);
