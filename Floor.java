@@ -18,21 +18,10 @@ public class Floor {
         this.countSections = countSections;
     }
 
-    public void draw (Graphics2D gr, int numberFloor) {
-        boolean option;
-        if (numberFloor == 1) {
-            option = true;
-        } else {
-            option = false;
-        }
-
+    public void draw (Graphics2D gr, int numberFloor, int[] floor) {
         Section section;
         for (int i = 0; i < countSections; i++) {
-            if (option) {
-                section = new Section(x + i * widthSection, y, (int) (1 + 2 * Math.random()));
-            } else {
-                section = new Section(x + i * widthSection, y, 1);
-            }
+            section = new Section(x + i * widthSection, y, floor[i]);
             section.draw(gr, widthSection, heightSection);
         }
     }
@@ -50,3 +39,8 @@ public class Floor {
         this.y = y;
     }
 }
+
+
+
+
+
