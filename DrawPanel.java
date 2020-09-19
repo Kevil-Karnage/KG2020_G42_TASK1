@@ -4,33 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel {
-    private int width;
-    private int height;
 
-    private Sun sun = new Sun(300, 200, 50, 120, 134, Color.orange);
-
-
-    public DrawPanel (int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
+//    private Sun sun = new Sun(300, 200, 50, 120, 134, Color.orange);
 
     @Override
     public void paint(Graphics g) {
         Graphics2D gr = (Graphics2D) g;
 
-        int heightGrass = (int) (height / 4 + height / 2 * Math.random());
+        int heightGrass = (int) (getHeight() / 4 + getHeight() / 2 * Math.random());
 
-        BackGround backGround = new BackGround(width, heightGrass);
-        backGround.draw(gr, height);
+        BackGround backGround = new BackGround(getWidth(), heightGrass);
+        backGround.draw(gr, getHeight());
 
-        Home home = new Home(100, heightGrass - 80);
-        home.draw(gr, height, width);
 
-        Clouds clouds = new Clouds(100, 100, 50);
-        clouds.draw(gr, width, height);
+        int heightSection = 150;
+        int widthSection = 200;
+        int x = 100;
+        int y = heightGrass - 80;
+
+        int countFloors = (int) (1 + ((y - 80 + heightSection) / heightSection) * Math.random());
+        int countSections = (int) (1 + ((getWidth() - x) / widthSection) * Math.random());
+        Home home = new Home(x, y, countFloors, countSections, widthSection, heightSection);
+        home.draw(gr);
     }
 }
-//заполненное fillLine и т.п.
-//пустое drawLine и т.п.
-// gr.setPaint(new GradientPaint()); - градиент

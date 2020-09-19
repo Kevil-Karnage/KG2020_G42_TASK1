@@ -3,27 +3,42 @@ package Kevil.Karnage;
 import java.awt.*;
 
 public class Floor {
-    private boolean first = false;
     private int x;
     private int y;
-    private int countSections;
+    private Section[] sections;
+    private int widthSection;
+    private int heightSection;
+    private boolean first;
 
-    private int heightSection = 150;
-    private int widthSection = 200;
 
 
-    public Floor (int x, int y, int countSections) {
+    public Floor (int x, int y, int countSections, int widthSection, int heightSection, boolean first) {
         this.x = x;
         this.y = y;
-        this.countSections = countSections;
+        this.sections = new Section[countSections];
+        this.widthSection = widthSection;
+        this.heightSection = heightSection;
+        this.first = first;
+
+        if (first) {
+            for (int i = 0; i < sections.length; i++) {
+                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, (int) (2 * Math.random()));
+            }
+        } else {
+            for (int i = 0; i < sections.length; i++) {
+                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, 1);
+            }
+        }
     }
 
-    public void draw (Graphics2D gr, int numberFloor, int[] floor) {
-        Section section;
-        for (int i = 0; i < countSections; i++) {
-            section = new Section(x + i * widthSection, y, floor[i]);
-            section.draw(gr, widthSection, heightSection);
+    public void draw (Graphics2D gr) {
+        for (int i = 0; i < sections.length; i++) {
+            sections[i].draw(gr);
         }
+    }
+
+    public int getCountSections() {
+        return sections.length;
     }
 
     public int getHeightSection() {
@@ -33,14 +48,4 @@ public class Floor {
     public int getWidthSection() {
         return widthSection;
     }
-
-    public void setXAndY(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
 }
-
-
-
-
-

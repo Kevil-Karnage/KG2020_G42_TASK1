@@ -19,5 +19,14 @@ public class BackGround {
         gr.fillRect(0,0, width,height);
         gr.setColor(new Color(0,125,0));
         gr.fillRect(0, height, width, fullHeight - height);
+
+
+
+        int n = 1 + (int) (5 * Math.random());
+        for (int i = 0; i < n; i++) {
+            int begin = -50 + (int) (300 * Math.random());
+            Clouds clouds = new Clouds(begin + width / n * i, 25, 30, (int) (2 * Math.random()));
+            clouds.draw(gr);
+        }
     }
 }

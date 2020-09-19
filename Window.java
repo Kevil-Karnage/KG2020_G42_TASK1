@@ -6,31 +6,31 @@ public class Window {
     //координаты левого верхнего угла окна
     private int x;
     private int y;
-
-    private int countGlass;    //количество стёкол в окне
+    private int type;    //количество стёкол в окне
+    private int width;    //ширина окна
+    private int height;    //высота окна
 
     private int margin = 5;    // толщина рамки окна
-    private int width = 100;    //ширина окна
-    private int height = 75;    //высота окна
-
 
     //у стекла в окне может быть 2 вида ширины - во всё окно и в половину окна
     // аналогично в высотой
-    int widthGlass1;
-    int heightGlass1;
-    int widthGlass2;
-    int heightGlass2;
+    private int widthGlass1;
+    private int heightGlass1;
+    private int widthGlass2;
+    private int heightGlass2;
 
     //левый верхний левый угол каждого стекла может одну из 2 x-координат и одну из 2 y-координат
-    int x1;
-    int y1;
-    int x2;
-    int y2;
+    private int x1;
+    private int y1;
+    private int x2;
+    private int y2;
 
-    public Window (int x, int y, int countGlass) {
+    public Window (int x, int y, int width, int height, int type) {
         this.x = x;
         this.y = y;
-        this.countGlass = countGlass;
+        this.width = width;
+        this.height = height;
+        this.type = type;
 
 
         widthGlass1 = width - 2 * margin;
@@ -53,7 +53,7 @@ public class Window {
         //Для каждого стекла отрисовываем черную границу
 
 
-        if (countGlass == 0) {
+        if (type == 0) {
             gr.setColor(Color.white);
             gr.fillOval(x1, y1, widthGlass1, widthGlass1);
             gr.setColor(Color.blue);
@@ -67,12 +67,12 @@ public class Window {
             gr.setColor(Color.black);
             gr.drawRect(x, y, width, height);
             gr.setColor(Color.blue);
-            if (countGlass == 1) {
+            if (type == 1) {
 
                 gr.fillRect(x1, y1, widthGlass1, heightGlass1);
                 gr.setColor(Color.black);
                 gr.drawRect(x1, y1, widthGlass1, heightGlass1);
-            } else if (countGlass == 2) {
+            } else if (type == 2) {
 
                 gr.fillRect(x1, y1, widthGlass2, heightGlass1);
                 gr.fillRect(x2, y1, widthGlass2, heightGlass1);
@@ -80,7 +80,7 @@ public class Window {
                 gr.setColor(Color.black);
                 gr.drawRect(x1, y1, widthGlass2, heightGlass1);
                 gr.drawRect(x2, y1, widthGlass2, heightGlass1);
-            } else if (countGlass == 3) {
+            } else if (type == 3) {
 
                 gr.fillRect(x1, y1, widthGlass2, heightGlass2);
                 gr.fillRect(x1, y2, widthGlass2, heightGlass2);
@@ -90,7 +90,7 @@ public class Window {
                 gr.drawRect(x1, y1, widthGlass2, heightGlass2);
                 gr.drawRect(x1, y2, widthGlass2, heightGlass2);
                 gr.drawRect(x2, y1, widthGlass2, heightGlass1);
-            } else if (countGlass == 4) {
+            } else if (type == 4) {
 
                 gr.fillRect(x1, y1, widthGlass2, heightGlass2);
                 gr.fillRect(x2, y1, widthGlass2, heightGlass2);
@@ -112,20 +112,5 @@ public class Window {
 
     public int getHeight () {
         return height;
-    }
-
-    public void setX (int x) {
-        this.x = x;
-
-        x1 = x + margin;
-        x2 = x + 2 * margin + widthGlass2;
-
-    }
-
-    public void setY (int y) {
-        this.y = y;
-
-        y1 = y + margin;
-        y2 = y + 2 * margin + heightGlass2;
     }
 }
