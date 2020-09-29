@@ -1,8 +1,11 @@
-package Kevil.Karnage;
+package DrawUtils.Home;
+
+import DrawUtils.Drawable;
+import Enums.Sections;
 
 import java.awt.*;
 
-public class Floor {
+public class Floor implements Drawable {
     private int x;
     private int y;
     private Section[] sections;
@@ -20,13 +23,15 @@ public class Floor {
         this.heightSection = heightSection;
         this.first = first;
 
+        Sections[] enumSections = Sections.values();
         if (first) {
-            for (int i = 0; i < sections.length; i++) {
-                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, (int) (2 * Math.random()));
+            for (int i = 1; i < sections.length; i++) {
+                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, enumSections[(int) (2 * Math.random())], false);
             }
+            sections[0] = new Section(x, y, widthSection, heightSection, enumSections[(int) (2 * Math.random())], true);
         } else {
             for (int i = 0; i < sections.length; i++) {
-                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, 1);
+                sections[i] = new Section(x + i * widthSection, y, widthSection, heightSection, enumSections[1], false);
             }
         }
     }

@@ -1,4 +1,4 @@
-package Kevil.Karnage;
+package DrawUtils.Home;
 
 import java.awt.*;
 
@@ -25,7 +25,7 @@ public class Porch {
     }
 
     public void draw (Graphics2D gr) {
-        Roof roof = new Roof (x + marginPorch, y + marginPorch, roofSize, roofThicknes);
+        Roof roof = new Roof (x + marginPorch, y + marginPorch, roofSize, roofThicknes, (int) (2 * Math.random()));
         roof.draw(gr);
 
         int n = countColumn * 2 - 1;
@@ -48,7 +48,7 @@ public class Porch {
             }
         }
 
-        Door door = new Door(x + marginPorch + blockColumns, y + marginPorch + roofThicknes);
-        door.draw(gr, Color.green, Color.yellow);
+        Door door = new Door(x + marginPorch + blockColumns, y + marginPorch + roofThicknes, Color.green, Color.yellow);
+        door.draw(gr);
     }
 }

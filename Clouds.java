@@ -1,8 +1,10 @@
-package Kevil.Karnage;
+package DrawUtils.BackGround;
+
+import DrawUtils.Drawable;
 
 import java.awt.*;
 
-public class Clouds {
+public class Clouds implements Drawable {
     private int x;
     private int y;
     private int r;

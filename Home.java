@@ -1,8 +1,10 @@
-package Kevil.Karnage;
+package DrawUtils.Home;
+
+import DrawUtils.Drawable;
 
 import java.awt.*;
 
-public class Home {
+public class Home implements Drawable {
     private int x;
     private int y;
     private Floor[] floors;
@@ -29,7 +31,7 @@ public class Home {
         int heightRoof = 2 * frame;
         int widthRoof = floors[0].getWidthSection() * floors[0].getCountSections() + 2 * frame;
         int yRoof = y - heightRoof - (floors.length - 1) * floors[0].getHeightSection();
-        Roof roof = new Roof(x - frame, yRoof, widthRoof, heightRoof);
-        roof.draw(gr, (int) (2 * Math.random()));
+        Roof roof = new Roof(x - frame, yRoof, widthRoof, heightRoof, (int) (2 * Math.random()));
+        roof.draw(gr);
     }
 }

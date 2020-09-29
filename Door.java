@@ -1,10 +1,14 @@
-package Kevil.Karnage;
+package DrawUtils.Home;
+
+import DrawUtils.Drawable;
 
 import java.awt.*;
 
-public class Door {
+public class Door implements Drawable {
     private int x;
     private int y;
+    private Color mainColor;
+    private Color secondColor;
 
     private int marginDoor = 10;
     private int frame = 5;
@@ -12,12 +16,14 @@ public class Door {
     private int width = 60;
     private int height = 120;
 
-    public Door (int x, int y) {
+    public Door (int x, int y, Color mainColor, Color secondColor) {
         this.x = x;
         this.y = y;
+        this.mainColor = mainColor;
+        this.secondColor = secondColor;
     }
 
-    public void draw (Graphics2D gr, Color mainColor, Color secondColor) {
+    public void draw (Graphics2D gr) {
         int x1 = x + marginDoor + frame;
         int y1 = y + marginDoor + frame;
         int width1 = width - 2 * frame;
